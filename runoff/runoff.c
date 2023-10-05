@@ -179,7 +179,7 @@ int find_min(void)
     {
         if (!candidates[i].eliminated && candidates[i].votes < min_votes)
         {
-            min_votes = candidates[i].votes
+            min_votes = candidates[i].votes;
         }
     }
     return min_votes;
@@ -188,8 +188,15 @@ int find_min(void)
 // 候補者間で同点の場合、true
 bool is_tie(int min)
 {
-    // TODO
-    return false;
+    for (int i = 0; i < candidate_count; i ++)
+    {
+        if (!candidates[i].eliminated && candidates[i].votes != min)
+        {
+            return false;
+        }
+    }
+    
+    return true;
 }
 
 // 最下位の候補者を除外
