@@ -1,5 +1,6 @@
 #include <cs50.h>
 #include <stdio.h>
+#include <string.h>
 #include <limits.h>
 
 // 有権者の最大数
