@@ -1,5 +1,6 @@
 #include <cs50.h>
 #include <stdio.h>
+#include <limits.h>
 
 // 有権者の最大数
 #define MAX_VOTERS 100
@@ -172,8 +173,16 @@ bool print_winner(void)
 // 残りの候補者が持つ最小票数を返す
 int find_min(void)
 {
-    // TODO
-    return 0;
+    int min_votes = INT_MAX;
+
+    for (int i = 0; i < candidate_count; i ++)
+    {
+        if (!candidates[i].eliminated && candidates[i].votes < min_votes)
+        {
+            min_votes = candidates[i].votes
+        }
+    }
+    return min_votes;
 }
 
 // 候補者間で同点の場合、true
