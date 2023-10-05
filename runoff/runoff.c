@@ -123,14 +123,22 @@ int main(int argc, string argv[])
 // 投票が有効な場合は選好を記録
 bool vote(int voter, int rank, string name)
 {
-    // TODO
+    for (int i = 0; i < candidate_count; i ++) 
+    {
+        if (strcmp(name, candidates[i].name) == 0) 
+        {
+            preferences[voter][rank] = i;
+
+            return true;
+        }
+    }
     return false;
 }
 
 // 落選しなかった候補者の投票を集計
 void tabulate(void)
 {
-    // TODO
+    
     return;
 }
 
