@@ -120,7 +120,6 @@ void record_preferences(int ranks[])
     return;
 }
 
-// Record pairs of candidates where one is preferred over the other
 void add_pairs(void)
 {
 
@@ -148,7 +147,6 @@ void add_pairs(void)
     return;
 }
 
-// Sort pairs in decreasing order by strength of victory
 void sort_pairs(void)
 {
     // Implemented with bubble sort because the amount of data (candidates) is the upper limit of 9
@@ -171,7 +169,6 @@ void sort_pairs(void)
     return;
 }
 
-// Lock pairs into the candidate graph in order, without creating cycles
 void lock_pairs(void)
 {
     for (int i = 0; i < pair_count; i++)
@@ -184,7 +181,6 @@ void lock_pairs(void)
     return;
 }
 
-// Check if a cycle is created in the graph (if there is one where the arrow returns to itself)
 bool creates_cycle(int start, int end)
 {
     // Self-loop check
@@ -205,7 +201,6 @@ bool creates_cycle(int start, int end)
 }
 
 
-// Print the winner of the election
 void print_winner(void)
 {
     for (int i = 0; i < candidate_count; i++)
