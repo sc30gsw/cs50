@@ -158,7 +158,7 @@ void tabulate(void)
 
 bool print_winner(void)
 {
-    int majority_votes = (voter_count / 2) + (voter_count % 2);
+    int majority_votes = (voter_count / 2) + 1;
 
     for (int i = 0; i < candidate_count; i ++)
     {
