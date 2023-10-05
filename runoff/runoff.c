@@ -138,7 +138,19 @@ bool vote(int voter, int rank, string name)
 // 落選しなかった候補者の投票を集計
 void tabulate(void)
 {
-    
+    for (int i = 0; i < voter_count; i ++)
+    {
+        for (int j = 0; j < candidate_count; j ++)
+        {
+            if (!candidates[preferences[i][j]].eliminated)
+            {
+                candidates[preferences[i][j]].votes ++;
+                // 次の候補者に移る
+                break;
+            }
+        }
+        
+    }
     return;
 }
 
