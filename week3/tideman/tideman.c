@@ -15,11 +15,9 @@ typedef struct
 }
 pair;
 
-// Array of candidates
 string candidates[MAX];
 pair pairs[MAX * (MAX - 1) / 2];
 
-// 配列pairs・candidatesの数
 int pair_count;
 int candidate_count;
 
