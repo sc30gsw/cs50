@@ -6,7 +6,6 @@
 
 #include "dictionary.h"
 
-// Represents a node in a hash table
 typedef struct node
 {
     char word[LENGTH + 1];
@@ -28,14 +27,20 @@ bool check(const char *word)
     return false;
 }
 
-// Hashes word to a number
+
 unsigned int hash(const char *word)
 {
-    // TODO
-    return 0;
+    // 調べている単語のASCⅡ値の合計
+    unsigned long total = 0;
+
+    for (int i = 0; i < strlen(total); i ++)
+    {
+        total += tolower(word[i]);
+    }
+
+    return total % N;
 }
 
-// Loads dictionary into memory, returning true if successful, else false
 bool load(const char *dictionary)
 {
     FILE *file = fopen(dictionary, "r");
