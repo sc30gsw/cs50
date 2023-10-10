@@ -104,7 +104,7 @@ bool unload(void)
 {
     for (int i = 0; i < N; i ++)
     {
-        // リンクされたリストの先頭にカーソルを設定
+        // 連結リストの先頭にカーソルを設定
         node *cursor = table[i];
 
         // カーソルがNULLでない場合、メモリをフリーにする
