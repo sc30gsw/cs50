@@ -1,4 +1,6 @@
 // Implements a dictionary's functionality
+#include <ctype.h>
+#include <stdlib.h>
 #include <stdbool.h>
 #include <stdio.h>
 #include <string.h>
@@ -46,7 +48,7 @@ unsigned int hash(const char *word)
     // 調べている単語のASCⅡ値の合計
     unsigned long total = 0;
 
-    for (int i = 0; i < strlen(total); i ++)
+    for (int i = 0; i < strlen(word); i ++)
     {
         total += tolower(word[i]);
     }
@@ -97,9 +99,26 @@ unsigned int size(void)
     return 0;
 }
 
-// Unloads dictionary from memory, returning true if successful, else false
 bool unload(void)
 {
-    // TODO
-    return false;
+    for (int i = 0; i < N; i ++)
+    {
+        // リンクされたリストの先頭にカーソルを設定
+        node *cursor = table[i];
+
+        // カーソルがNULLでない場合、メモリをフリーにする
+        while (cursor != NULL)
+        {
+            node *temp = cursor;
+            cursor = cursor->next;
+            free(temp);
+        }
+
+        if (cursor != NULL)
+        {
+            return false;
+        }
+    }
+
+    return true;
 }
