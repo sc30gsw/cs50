@@ -29,8 +29,6 @@ def is_valid_card(card_number):
 
       sum += n
 
-  print(sum)
-
   # 合計が10で割り切れるかチェック
   return (sum % 10) == 0
 
