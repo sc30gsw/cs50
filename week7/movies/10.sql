@@ -1,6 +1,10 @@
 SELECT p.name FROM people p
-INNER JOIN directors d
-ON p.id = d.person_id
-INNER JOIN ratings r
-ON d.movie_id = r.movie_id
-WHERE r.rating >= 9.0;
+WHERE p.id IN 
+(
+  SELECT DISTINCT(p.id) FROM people p
+  INNER JOIN directors d 
+  ON d.person_id = p.id
+  INNER JOIN movies m ON m.id = d.movie_id
+  INNER JOIN ratings r ON r.movie_id = m.id
+  WHERE r.rating >= 9.0
+);
