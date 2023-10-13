@@ -6,13 +6,21 @@ def main():
     print("Usage: python3 dna.py data.csv sequence.txt")
     return
 
-  database, dna_sequence = load_data()
+  database = load_database()
+  dna_sequence = load_dna_sequence()
 
   # csvのDNA部分の列名取得
   sub_sequences = list(database[0].keys())[1:]
-  find_matching_name(database, dna_sequence, sub_sequences)
 
-def load_data():
+  result = find_matching_longest_str(dna_sequence, sub_sequences)
+  matching_name = find_matching_name(database, sub_sequences, result)
+
+  if(matching_name):
+    print(matching_name)
+  else:
+    print("No match")
+
+def load_database():
   database = []
 
   with open(argv[1], "r") as file:
@@ -20,10 +28,13 @@ def load_data():
     for row in reader:
       database.append(row)
 
+  return database
+
+def load_dna_sequence():
   with open(argv[2], "r") as file:
     dna_sequence = file.read()
 
-  return database, dna_sequence
+  return dna_sequence
 
 def find_matching_longest_str(dna_sequence, sub_sequences):
   # 各STRの最長の一致を探す
@@ -33,9 +44,7 @@ def find_matching_longest_str(dna_sequence, sub_sequences):
   
   return result
 
-def find_matching_name(database, dna_sequence, sub_sequences):
-  result = find_matching_longest_str(dna_sequence, sub_sequences)
-
+def find_matching_name(database, sub_sequences, result):
   # databaseから一致するDNAを見つける
   for person in database:
     match = 0
@@ -46,11 +55,10 @@ def find_matching_name(database, dna_sequence, sub_sequences):
 
       # すべてのSTRが一致する場合
       if match == len(sub_sequences):
-        print(person["name"])
-        return
+        return person["name"]
 
   # 一致するものがない場合
-  print("No match")
+  return None
 
 # sequence内のsub_sequenceの最長実行の長さを返す
 def longest_match(sequence, sub_sequence):
