@@ -8,12 +8,12 @@ document.addEventListener('DOMContentLoaded', () => {
     countDisplay.textContent = count
   }
 
-  btnPlus.addEventListener('click', function () {
+  btnPlus.addEventListener('click', () => {
     count++
     updateDisplay()
   })
 
-  btnMinus.addEventListener('click', function () {
+  btnMinus.addEventListener('click', () => {
     count--
     updateDisplay()
   })
