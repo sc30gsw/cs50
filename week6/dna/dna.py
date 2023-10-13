@@ -6,6 +6,13 @@ def main():
     print("Usage: python3 dna.py data.csv sequence.txt")
     return
 
+  database, dna_sequence = load_data()
+
+  # csvのDNA部分の列名取得
+  sub_sequences = list(database[0].keys())[1:]
+  find_matching_name(database, dna_sequence, sub_sequences)
+
+def load_data():
   database = []
 
   with open(argv[1], "r") as file:
@@ -16,13 +23,18 @@ def main():
   with open(argv[2], "r") as file:
     dna_sequence = file.read()
 
-  # csvのDNA部分の列名取得
-  sub_sequences = list(database[0].keys())[1:]
+  return database, dna_sequence
 
+def find_matching_longest_str(dna_sequence, sub_sequences):
   # 各STRの最長の一致を探す
   result = {}
   for sub_sequence in sub_sequences:
     result[sub_sequence] = longest_match(dna_sequence, sub_sequence)
+  
+  return result
+
+def find_matching_name(database, dna_sequence, sub_sequences):
+  result = find_matching_longest_str(dna_sequence, sub_sequences)
 
   # databaseから一致するDNAを見つける
   for person in database:
